@@ -1,8 +1,10 @@
 const { 
-  insertNew,  
+  insertNew, 
+  listMoviment, 
 } = require('../services/transfersService');
 
 const created = 201;
+const success = 200;
 
 const createOne = async (req, res, next) => {
     try {
@@ -16,6 +18,17 @@ const createOne = async (req, res, next) => {
     }
   };
 
+  const listAll = async (req, res, next) => {
+    try {
+      const id = req.userId;
+      const transfers = await listMoviment(id);
+      return res.status(success).json(transfers);
+    } catch (err) {    
+      return next(err);
+    }
+  };
+
 module.exports = {
-    createOne,    
+    createOne,
+    listAll,    
 };

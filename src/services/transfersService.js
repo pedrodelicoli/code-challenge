@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const { 
-  insertTransfer,  
+  insertTransfer,
+  findAll,  
 } = require('../models/tranfersModel');
 const { findById, insertValue, findByCpf } = require('../models/usersModel');
 const { errorHandler } = require('../utils/errorhandler');
@@ -9,7 +10,7 @@ const erro400 = 400;
 
 const errorName = {
   entries: 'Invalid entries. Try again.', 
-  value: 'tranfers limit to 2000',
+  value: 'Tranfers limit to 2000',
   amount: 'insufficient funds'
 };
 
@@ -31,15 +32,21 @@ const insertNew = async (transfer, id) => {
     const newTransfer = {
       ...transfer,
       userId: id,
+      role: 'transfer'
     };
     const transferId = await insertTransfer(newTransfer);
     return { 
       Transfer: {
         _id: transferId,
-        ...newTransfer,
+        ...newTransfer,        
       },  
     };    
   };
+
+  const listMoviment = async (id) => {
+    const statement = await findAll(id);
+    return statement;
+  };
   
 
-module.exports = { insertNew };  
+module.exports = { insertNew, listMoviment };  

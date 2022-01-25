@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/api/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./tests/**/*$NAME*.test.js --exit",
     "start": "nodemon ."
   },
   "repository": {
@@ -19,9 +19,14 @@
   },
   "homepage": "https://github.com/pedrodelicoli/code-challenge#readme",
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
-    "nodemon": "^2.0.15"
+    "mocha": "^9.2.0",
+    "mongodb-memory-server": "^6.9.6",
+    "nodemon": "^2.0.15",
+    "sinon": "^12.0.1"
   },
   "dependencies": {
     "express": "^4.17.2",

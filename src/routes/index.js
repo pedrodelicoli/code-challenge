@@ -2,7 +2,8 @@ const express = require('express');
 
 const { insertOne, login, userDeposit, userBalance } = require('../controllers/usersController');
 const { 
-    createOne,    
+    createOne,
+    listAll,    
 } = require('../controllers/transfersController');
 const { auth } = require('../middlewares/auth');
 
@@ -12,6 +13,7 @@ router.post('/users', insertOne);
 router.post('/login', login);
 router.post('/deposit', userDeposit);
 router.get('/balance', auth, userBalance);
+router.get('/statement', auth, listAll);
 router.post('/transfers', auth, createOne);
 
 

@@ -19,7 +19,6 @@ const insertValue = async (id, value) => {
     { _id: id },
     { $inc: { amount: parseFloat(value) } },
   );
-  console.log(query)
   return query;
 };
 
