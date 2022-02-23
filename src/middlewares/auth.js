@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { findByCpf } = require('../models/usersModel');
-const { errorHandler } = require('../utils/errorhandler');
+const findByCpf = require('../models/users/findByCpf');
+const errorHandler = require('../utils/errorhandler');
 
 const secret = 'seusecretdetoken';
 
@@ -21,6 +21,7 @@ const auth = async (req, _res, next) => {
       decoded = decode;    
     });  
     const { _id } = await findByCpf(decoded.data);
+    if (!_id) throw errorHandler(erro401, errorName.auth); 
     req.userId = _id;  
     next();  
   } catch (err) {
