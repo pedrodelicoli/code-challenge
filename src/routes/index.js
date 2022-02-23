@@ -1,11 +1,12 @@
 const express = require('express');
 
-const { insertOne, login, userDeposit, userBalance } = require('../controllers/usersController');
-const { 
-    createOne,
-    listAll,    
-} = require('../controllers/transfersController');
-const { auth } = require('../middlewares/auth');
+const insertOne = require('../controllers/users/insertOne');
+const login = require('../controllers/users/login');
+const userDeposit = require('../controllers/users/userDeposit');
+const userBalance = require('../controllers/users/userBalance');
+const createOne = require('../controllers/transfers/createOne');
+const listAll = require('../controllers/transfers/listAll');
+const auth = require('../middlewares/auth');
 
 const router = express.Router();
 
